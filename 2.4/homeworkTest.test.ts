@@ -1,3 +1,4 @@
+// importing specific stuff from selenium
 import {
     Builder,
     By,
@@ -9,10 +10,12 @@ import {
 } from "selenium-webdriver";
 
 const chromedriver = require("chromedriver");
-
+// What are we specifying inside on the driver with the 'capabilities'? 
 const driver: WebDriver = new Builder()
     .withCapabilities(Capabilities.chrome())
     .build();
+
+// where is the class 'by' specififed? - answered my own question, it's imported from selenium webdriver? 
 const bernice: By = By.name("employee1");
 const marnie: By = By.name("employee2");
 const phillip: By = By.name("employee3");
@@ -25,7 +28,7 @@ const cancelButton: By = By.name("cancel");
 const errorCard: By = By.css(".errorCard");
 
 describe("Employee Manager 1.2", () => {
-
+// telling us essentially what we are testing
     beforeEach(async () => {
         await driver.get(
         "https://devmountain-qa.github.io/employee-manager/1.2_Version/index.html"
@@ -44,6 +47,8 @@ describe("Employee Manager 1.2", () => {
         4. Open Bernice Ortiz
         5. Verify the name field is the original name
         */
+
+        // I liked doing these tests and determining which elements to check to complete the test step by step 
         await driver.findElement(bernice).click();
         await driver.wait(
             until.elementIsVisible(await driver.findElement(nameInput))
